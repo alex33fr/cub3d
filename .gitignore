@@ -1,0 +1,28 @@
+# Binaires
+cub3D
+a.out
+*.out
+
+# Objets / librairies (parties du sujet recompilees)
+*.o
+*.a
+*.so
+*.exe
+obj/
+build/
+libft/libft.a
+
+# MinilibX (telechargee a la compilation, pas a push)
+minilibx-linux/
+minilibx-linux.tgz
+
+# Editeurs / outils / OS
+.vscode/
+.idea/
+.claude/
+*.swp
+*~
+*.log
+.DS_Store
+vgcore.*
+src/parsing
