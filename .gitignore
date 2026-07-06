@@ -25,4 +25,3 @@ minilibx-linux.tgz
 *.log
 .DS_Store
 vgcore.*
-src/parsing
