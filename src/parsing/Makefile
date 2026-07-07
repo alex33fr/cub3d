@@ -8,25 +8,33 @@ LIBFT_DIR  = $(ROOT)/libft
 LIBFT_LIB  = $(LIBFT_DIR)/libft.a
 INCLUDES   = -I$(ROOT)/includes -I$(LIBFT_DIR)
 
+OBJ_DIR    = obj
+
 SRCS       = \
 	main.c \
-	parsing.c
+	parsing.c \
+	tools.c \
+	map.c \
+	map_check.c \
+	element.c \
+	resolver.c
 
-OBJS       = $(SRCS:.c=.o)
+OBJS       = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
 all: $(NAME)
 
 $(NAME): $(LIBFT_LIB) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_LIB) -o $(NAME)
 
-%.o: %.c
+$(OBJ_DIR)/%.o: %.c
+	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(LIBFT_LIB):
 	@$(MAKE) -C $(LIBFT_DIR)
 
 clean:
-	@rm -f $(OBJS)
+	@rm -rf $(OBJ_DIR)
 
 fclean: clean
 	@rm -f $(NAME)

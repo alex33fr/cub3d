@@ -1,36 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   resolver.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aprivalo <aprivalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/06 22:25:40 by aprivalo          #+#    #+#             */
-/*   Updated: 2026/07/07 13:51:56 by aprivalo         ###   ########.fr       */
+/*   Created: 2026/07/07 11:27:21 by aprivalo          #+#    #+#             */
+/*   Updated: 2026/07/07 11:27:55 by aprivalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-
-int	ft_parsing(char *av, t_data *data)
+void	ft_flood_fill(char **map, int y, int x)
 {
-	int	len;
-
-	if (!av || !data)
-		return (1);
-	len = ft_strlen(av);
-	if (len <= 4 || ft_strncmp(av + len - 4, ".cub", 4) != 0)
-		return (1);
-	data->color_f[0] = -1;
-	data->color_c[0] = -1;
-	data->map.map = ft_store_map(av);
-	if (!data->map.map)
-		return (1);
-	if (ft_separator(data) != 0 || ft_parse_elements(data) != 0)
-	{
-		ft_free_data(data);
-		return (1);
-	}
-	return (0);
+	(void)map;
+	(void)y;
+	(void)x;
 }
