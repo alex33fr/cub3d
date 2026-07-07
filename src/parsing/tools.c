@@ -1,36 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aprivalo <aprivalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/25 11:39:48 by aprivalo          #+#    #+#             */
-/*   Updated: 2026/07/06 22:58:36 by aprivalo         ###   ########.fr       */
+/*   Created: 2026/07/06 22:35:03 by aprivalo          #+#    #+#             */
+/*   Updated: 2026/07/06 22:35:12 by aprivalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-#include "libft.h"
 
-int	main(int ac, char **av)
-{
-	int		status;
-	t_data	*data;
-	
-	status = 0;
-	ft_bzero(&data, sizeof(data));
-	if (ac != 2)
-	{
-		ft_putstr_fd("Error 1: ./cub3D maps/*.cub\n", 2);
-		status = 1;
-		return (status);
-	}
-	status = ft_parsing(av[1], &data);
-	if (status == 1)
-	{
-		ft_putstr_fd("Error 2: bad args\n", 2);
-		return(status);
-	}
-	return (0);
-}

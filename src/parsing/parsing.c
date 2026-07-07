@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aprivalo <aprivalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/25 11:39:48 by aprivalo          #+#    #+#             */
-/*   Updated: 2026/07/06 22:58:36 by aprivalo         ###   ########.fr       */
+/*   Created: 2026/07/06 22:25:40 by aprivalo          #+#    #+#             */
+/*   Updated: 2026/07/07 10:07:45 by aprivalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-#include "libft.h"
 
-int	main(int ac, char **av)
+int	ft_parsing(char *av, t_data **data)
 {
-	int		status;
-	t_data	*data;
-	
-	status = 0;
-	ft_bzero(&data, sizeof(data));
-	if (ac != 2)
-	{
-		ft_putstr_fd("Error 1: ./cub3D maps/*.cub\n", 2);
-		status = 1;
-		return (status);
-	}
-	status = ft_parsing(av[1], &data);
-	if (status == 1)
-	{
-		ft_putstr_fd("Error 2: bad args\n", 2);
-		return(status);
-	}
+	int len;
+	int check_ext;
+
+	if (!av || !data)
+		return (1);
+	len = ft_strlen(av);
+	if (len <= 4)
+		return (1);
+	check_ext = ft_strncmp(av + len - 4, ".cub", 4);
+	if (check_ext != 0)
+		return (1);
+	ft_printf("OK");
 	return (0);
 }
