@@ -3,35 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjeannea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aprivalo <aprivalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 11:22:31 by jjeannea          #+#    #+#             */
-/*   Updated: 2026/06/30 20:25:03 by jjeannea         ###   ########.fr       */
+/*   Updated: 2026/07/15 19:46:07 by aprivalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static int	has_cub_ext(char *s)
-{
-	size_t	len;
-	int		cmp;
-
-	len = ft_strlen(s);
-	if (len < 5)
-		return (0);
-	cmp = ft_strncmp(s + len - 4, ".cub", 4);
-	return (cmp == 0);
-}
-
-static int	check_args(int argc, char **argv)
-{
-	if (argc != 2)
-		return (0);
-	if (!has_cub_ext(argv[1]))
-		return (0);
-	return (1);
-}
 
 static void	fail(t_game *g, int mlx_up)
 {
@@ -43,14 +22,23 @@ static void	fail(t_game *g, int mlx_up)
 
 int	main(int argc, char **argv)
 {
+	int status;
 	t_game	g;
+	t_data	data;
 
-	if (!check_args(argc, argv))
+	if (argc != 2)
 	{
-		ft_putstr_fd("Error\n", 2);
+		ft_putstr_fd("Error 1\n", 2);
+		return (1);
+	}
+	status = ft_parsing(argv[1], &data);
+	if(status == 1)
+	{
+		ft_putstr_fd("Error 2\n", 2);
 		return (1);
 	}
 	ft_bzero(&g, sizeof(t_game));
+	ft_bzero(&data, sizeof(t_data));
 	if (init_mlx(&g))
 	{
 		fail(&g, 1);

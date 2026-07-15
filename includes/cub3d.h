@@ -3,24 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjeannea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aprivalo <aprivalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 11:15:08 by jjeannea          #+#    #+#             */
-/*   Updated: 2026/06/30 20:12:47 by jjeannea         ###   ########.fr       */
+/*   Updated: 2026/07/15 19:36:09 by aprivalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdio.h>
-# include <string.h>
 # include <math.h>
 # include "mlx.h"
 # include "libft.h"
+# include "parsing.h"
 
 # define WIN_W 1280
 # define WIN_H 720
