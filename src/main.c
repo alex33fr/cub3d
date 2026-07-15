@@ -6,7 +6,7 @@
 /*   By: jjeannea <jjeannea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 11:22:31 by jjeannea          #+#    #+#             */
-/*   Updated: 2026/07/15 14:25:20 by jjeannea         ###   ########.fr       */
+/*   Updated: 2026/07/15 14:58:16 by jjeannea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,8 @@ static	int load_colors(t_game *g, char *path)
 	t_data data;
 
 	ft_bzero(&data, sizeof(t_data));
-	printf("truc bidon\n");
 	if (!ft_parsing(path, &data))
-	{
-		printf("in da loop\n");
 		return (1);
-	}
 	g->floor = rgb_to_int(data.color_f[0], data.color_f[1], data.color_f[2]);
 	printf("floor = %d, %d, %d\n", data.color_f[0], data.color_f[1], data.color_f[2]);
 	g->ceiling = rgb_to_int(data.color_c[0], data.color_c[1], data.color_c[2]);
