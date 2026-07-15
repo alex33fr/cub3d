@@ -1,9 +1,9 @@
-# Binaires
+# Bin
 cub3D
 a.out
 *.out
 
-# Objets / librairies (parties du sujet recompilees)
+# Obj
 *.o
 *.a
 *.so
@@ -12,10 +12,11 @@ obj/
 build/
 libft/libft.a
 
-# MinilibX (dossier extrait/recompile, pas l'archive : versionnee pour build hors-ligne)
+# MinilibX
 minilibx-linux/
+minilibx-linux.tgz
 
-# Editeurs / outils / OS
+# Tools
 .vscode/
 .idea/
 .claude/
