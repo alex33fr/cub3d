@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjeannea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/26 11:12:53 by jjeannea          #+#    #+#             */
-/*   Updated: 2026/06/30 13:47:09 by jjeannea         ###   ########.fr       */
+/*   Created: 2026/06/26 11:22:31 by jjeannea          #+#    #+#             */
+/*   Updated: 2026/06/30 20:25:03 by jjeannea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 static int	has_cub_ext(char *s)
 {
 	size_t	len;
+	int		cmp;
 
 	len = ft_strlen(s);
 	if (len < 5)
 		return (0);
-	return (ft_strncmp(s + len - 4, ".cub", 4) == 0);
+	cmp = ft_strncmp(s + len - 4, ".cub", 4);
+	return (cmp == 0);
 }
 
 static int	check_args(int argc, char **argv)
@@ -31,9 +33,30 @@ static int	check_args(int argc, char **argv)
 	return (1);
 }
 
+static void	fail(t_game *g, int mlx_up)
+{
+	ft_putstr_fd("Error\n", 2);
+	if (mlx_up)
+		cleanup_mlx(g);
+	free_game(g);
+}
+
 int	main(int argc, char **argv)
 {
+	t_game	g;
+
 	if (!check_args(argc, argv))
-		return (ft_putstr_fd("Error\n", 2), 1);
+	{
+		ft_putstr_fd("Error\n", 2);
+		return (1);
+	}
+	ft_bzero(&g, sizeof(t_game));
+	if (init_mlx(&g))
+	{
+		fail(&g, 1);
+		return (1);
+	}
+	setup_hooks(&g);
+	mlx_loop(g.mlx);
 	return (0);
 }

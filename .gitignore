@@ -12,9 +12,8 @@ obj/
 build/
 libft/libft.a
 
-# MinilibX (telechargee a la compilation, pas a push)
+# MinilibX (dossier extrait/recompile, pas l'archive : versionnee pour build hors-ligne)
 minilibx-linux/
-minilibx-linux.tgz
 
 # Editeurs / outils / OS
 .vscode/
@@ -25,4 +24,3 @@ minilibx-linux.tgz
 *.log
 .DS_Store
 vgcore.*
-src/parsing
