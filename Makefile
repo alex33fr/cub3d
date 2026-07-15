@@ -7,7 +7,7 @@ MLX_DIR     = minilibx-linux
 MLX_LIB     = $(MLX_DIR)/libmlx.a
 MLX_ARCHIVE = minilibx-linux.tgz
 MLX_URL     = https://cdn.intra.42.fr/document/document/46321/minilibx-linux.tgz
-MLX_FLAGS   = $(MLX_DIR)/libmlx.a -lX11 -lXext -lm -lz
+MLX_FLAGS   = $(MLX_LIB) -lX11 -lXext -lm -lz
 
 LIBFT_DIR   = libft
 LIBFT_LIB   = $(LIBFT_DIR)/libft.a
@@ -15,61 +15,39 @@ LIBFT_LIB   = $(LIBFT_DIR)/libft.a
 INCLUDES    = -Iincludes -I$(MLX_DIR) -I$(LIBFT_DIR)
 
 SRC_DIR     = src
-SRCS        = $(shell find $(SRC_DIR) -name '*.c' 2>/dev/null)
 OBJ_DIR     = obj
+SRCS        = $(shell find $(SRC_DIR) -name '*.c' 2>/dev/null)
 OBJS        = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
-GREEN = \033[0;32m
-RED   = \033[0;31m
-RESET = \033[0m
-
-all:
-	@printf "\r$(GREEN)[  0%%] Initialisation$(RESET)"
-	@$(MAKE) $(NAME)
+all: $(NAME)
 
 $(NAME): $(MLX_LIB) $(LIBFT_LIB) $(OBJS)
-	@printf "\r$(GREEN)[ 90%%] Edition des liens$(RESET)          "
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_LIB) $(MLX_FLAGS) -o $(NAME) \
-	|| (printf "\n$(RED)Erreur edition des liens$(RESET)\n"; exit 1)
-	@printf "\r$(GREEN)[100%%] Build termine : $(NAME)$(RESET)\n"
-
-$(MLX_LIB):
-	@printf "\r$(GREEN)[ 10%%] MinilibX$(RESET)                   "
-	@if [ ! -d "$(MLX_DIR)" ]; then \
-		if [ ! -f "$(MLX_ARCHIVE)" ]; then \
-			curl -L $(MLX_URL) -o $(MLX_ARCHIVE) || wget $(MLX_URL); \
-		fi; \
-		tar -xzf $(MLX_ARCHIVE); \
-	fi
-	@$(MAKE) -C $(MLX_DIR) >/dev/null 2>&1 \
-	|| (printf "\n$(RED)Erreur compilation MinilibX$(RESET)\n"; exit 1)
-
-$(LIBFT_LIB):
-	@printf "\r$(GREEN)[ 40%%] Libft$(RESET)                       "
-	@$(MAKE) -C $(LIBFT_DIR) >/dev/null 2>&1 \
-	|| (printf "\n$(RED)Erreur compilation Libft$(RESET)\n"; exit 1)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_LIB) $(MLX_FLAGS) -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
-	@printf "\r$(GREEN)[ 70%%] %s$(RESET)                      " "$<"
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@ \
-	|| (printf "\n$(RED)Erreur compilation %s$(RESET)\n" "$<"; exit 1)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+$(MLX_LIB):
+	@if [ ! -d "$(MLX_DIR)" ]; then \
+		curl -L $(MLX_URL) -o $(MLX_ARCHIVE) || wget $(MLX_URL); \
+		tar -xzf $(MLX_ARCHIVE); \
+	fi
+	@$(MAKE) -C $(MLX_DIR) >/dev/null 2>&1
+
+$(LIBFT_LIB):
+	@$(MAKE) -C $(LIBFT_DIR)
 
 clean:
 	@rm -rf $(OBJ_DIR)
-	@if [ -d "$(MLX_DIR)" ]; then $(MAKE) -C $(MLX_DIR) clean >/dev/null 2>&1; fi
-	@$(MAKE) -C $(LIBFT_DIR) clean >/dev/null 2>&1
-	@printf "$(GREEN)[OK] Nettoyage termine$(RESET)\n"
+	@[ -d "$(MLX_DIR)" ] && $(MAKE) -C $(MLX_DIR) clean >/dev/null 2>&1 || true
+	@$(MAKE) -C $(LIBFT_DIR) clean >/dev/null 2>&1 || true
 
 fclean: clean
 	@rm -f $(NAME)
-	@rm -rf $(MLX_DIR)
-	@rm -f $(MLX_ARCHIVE)
-	@$(MAKE) -C $(LIBFT_DIR) fclean >/dev/null 2>&1
-	@printf "$(GREEN)[OK] Fclean termine (libft conservee)$(RESET)\n"
+	@rm -rf $(MLX_DIR) $(MLX_ARCHIVE)
+	@$(MAKE) -C $(LIBFT_DIR) fclean >/dev/null 2>&1 || true
 
-re:
-	@$(MAKE) fclean
-	@$(MAKE) all
+re: fclean all
 
 .PHONY: all clean fclean re

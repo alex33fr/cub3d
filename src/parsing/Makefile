@@ -1,7 +1,7 @@
-NAME       = parsing
+NAME       = cub3D
 
 CC         = cc
-CFLAGS     = -Wall -Wextra -Werror -g
+CFLAGS     = -Wall -Wextra -Werror
 
 ROOT       = ../..
 LIBFT_DIR  = $(ROOT)/libft
@@ -16,7 +16,12 @@ SRCS       = \
 	tools.c \
 	map.c \
 	map_check.c \
+	map_valid.c \
 	element.c \
+	element_fill.c \
+	rgb.c \
+	texture.c \
+	flood.c \
 	resolver.c
 
 OBJS       = $(SRCS:%.c=$(OBJ_DIR)/%.o)
