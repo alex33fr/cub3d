@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjeannea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aprivalo <aprivalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/27 09:40:55 by jjeannea          #+#    #+#             */
-/*   Updated: 2026/06/30 20:41:18 by jjeannea         ###   ########.fr       */
+/*   Updated: 2026/07/15 15:26:41 by aprivalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,14 @@ static int	on_keypress(int key, t_game *g)
 void	setup_hooks(t_game *g)
 {
 	mlx_do_key_autorepeatoff(g->mlx);
-	mlx_hook(g->win, EV_KEYPRESS, 1L << 0, on_keypress, g);
-	mlx_hook(g->win, EV_DESTROY, 1L << 17, on_destroy, g);
-	mlx_loop_hook(g->mlx, render_frame, g);
+/*
+# pragma GCC diagnostic push
+# pragma GCC diagnostic ignored "-Wcast-function-type"
+*/
+	mlx_hook(g->win, EV_KEYPRESS, 1L << 0, (int (*)())on_keypress, g);
+	mlx_hook(g->win, EV_DESTROY, 1L << 17, (int (*)())on_destroy, g);
+	mlx_loop_hook(g->mlx, (int (*)())render_frame, g);
+/*
+# pragma GCC diagnostic pop
+*/
 }

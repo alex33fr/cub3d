@@ -3,6 +3,7 @@ NAME        = cub3D
 CC          = cc
 CFLAGS      = -Wall -Wextra -Werror
 
+# --- cub3d-specific: philosophers has no external libs, cub3d needs MinilibX + libft ---
 MLX_DIR     = minilibx-linux
 MLX_LIB     = $(MLX_DIR)/libmlx.a
 MLX_ARCHIVE = minilibx-linux.tgz
@@ -11,64 +12,80 @@ MLX_FLAGS   = $(MLX_DIR)/libmlx.a -lX11 -lXext -lm -lz
 
 LIBFT_DIR   = libft
 LIBFT_LIB   = $(LIBFT_DIR)/libft.a
+# --- end cub3d-specific ---
 
-INCLUDES    = -Iincludes -I$(MLX_DIR) -I$(LIBFT_DIR)
+INCLUDES  = -Iincludes -I$(MLX_DIR) -I$(LIBFT_DIR)
 
-SRC_DIR     = src
-SRCS        = $(shell find $(SRC_DIR) -name '*.c' 2>/dev/null)
-OBJ_DIR     = obj
-OBJS        = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+OBJ_DIR   = obj
 
 GREEN = \033[0;32m
+BLUE  = \033[0;34m
 RED   = \033[0;31m
 RESET = \033[0m
 
-all:
-	@printf "\r$(GREEN)[  0%%] Initialisation$(RESET)"
-	@$(MAKE) $(NAME)
+SRCS =	src/main.c \
+		src/cleanup/cleanup_game.c \
+		src/cleanup/cleanup_mlx.c \
+		src/events/hooks.c \
+		src/init/mlx_init.c \
+		src/render/render.c \
+		src/utils/color.c \
+		src/utils/img.c \
+		src/parsing/parsing.c \
+		src/parsing/tools.c \
+		src/parsing/map.c \
+		src/parsing/map_check.c \
+		src/parsing/map_valid.c \
+		src/parsing/element.c \
+		src/parsing/element_fill.c \
+		src/parsing/rgb.c \
+		src/parsing/texture.c \
+		src/parsing/flood.c \
+		src/parsing/resolver.c
+
+OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
+
+all: $(NAME)
+
+$(OBJ_DIR)/%.o: %.c
+	@mkdir -p $(dir $@)
+	@printf "$(GREEN)[Compiling]$(RESET) $<\n"
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@ || (printf "$(RED)Error in $<$(RESET)\n"; exit 1)
 
 $(NAME): $(MLX_LIB) $(LIBFT_LIB) $(OBJS)
-	@printf "\r$(GREEN)[ 90%%] Edition des liens$(RESET)          "
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_LIB) $(MLX_FLAGS) -o $(NAME) \
-	|| (printf "\n$(RED)Erreur edition des liens$(RESET)\n"; exit 1)
-	@printf "\r$(GREEN)[100%%] Build termine : $(NAME)$(RESET)\n"
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_LIB) $(MLX_FLAGS) -no-pie -o $(NAME) || (printf "$(RED)Link error$(RESET)\n"; exit 1)
+	@rm -f $(MLX_ARCHIVE)
+	@printf "$(GREEN)[100%%] ========[ $(NAME) is ready ]======== [OK]$(RESET)\n"
 
 $(MLX_LIB):
-	@printf "\r$(GREEN)[ 10%%] MinilibX$(RESET)                   "
+	@printf "$(GREEN)[cub3D]$(RESET)\n"
 	@if [ ! -d "$(MLX_DIR)" ]; then \
 		if [ ! -f "$(MLX_ARCHIVE)" ]; then \
 			curl -L $(MLX_URL) -o $(MLX_ARCHIVE) || wget $(MLX_URL); \
 		fi; \
 		tar -xzf $(MLX_ARCHIVE); \
 	fi
-	@$(MAKE) -C $(MLX_DIR) >/dev/null 2>&1 \
-	|| (printf "\n$(RED)Erreur compilation MinilibX$(RESET)\n"; exit 1)
+	@$(MAKE) -C $(MLX_DIR) >/dev/null 2>&1; \
+	if [ ! -f "$(MLX_LIB)" ]; then \
+		printf "$(RED)MinilibX compilation error$(RESET)\n"; exit 1; \
+	fi
 
 $(LIBFT_LIB):
-	@printf "\r$(GREEN)[ 40%%] Libft$(RESET)                       "
-	@$(MAKE) -C $(LIBFT_DIR) >/dev/null 2>&1 \
-	|| (printf "\n$(RED)Erreur compilation Libft$(RESET)\n"; exit 1)
-
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(dir $@)
-	@printf "\r$(GREEN)[ 70%%] %s$(RESET)                      " "$<"
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@ \
-	|| (printf "\n$(RED)Erreur compilation %s$(RESET)\n" "$<"; exit 1)
+	@printf "$(GREEN)[Libft]$(RESET)\n"
+	@$(MAKE) -C $(LIBFT_DIR) >/dev/null 2>&1 || (printf "$(RED)Libft compilation error$(RESET)\n"; exit 1)
 
 clean:
 	@rm -rf $(OBJ_DIR)
 	@if [ -d "$(MLX_DIR)" ]; then $(MAKE) -C $(MLX_DIR) clean >/dev/null 2>&1; fi
-	@$(MAKE) -C $(LIBFT_DIR) clean >/dev/null 2>&1
-	@printf "$(GREEN)[OK] Nettoyage termine$(RESET)\n"
+	@if [ -d "$(LIBFT_DIR)" ]; then $(MAKE) -C $(LIBFT_DIR) clean >/dev/null 2>&1; fi
+	@printf "$(GREEN)Clean [OK]$(RESET)\n"
 
 fclean: clean
 	@rm -f $(NAME)
 	@rm -rf $(MLX_DIR)
-	@$(MAKE) -C $(LIBFT_DIR) fclean >/dev/null 2>&1
-	@printf "$(GREEN)[OK] Fclean termine$(RESET)\n"
+	@rm -f $(MLX_ARCHIVE)
+	@printf "$(GREEN)Fclean [OK]$(RESET)\n"
 
-re:
-	@$(MAKE) fclean
-	@$(MAKE) all
+re: fclean all
 
 .PHONY: all clean fclean re
