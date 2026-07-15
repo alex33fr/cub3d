@@ -6,7 +6,7 @@
 /*   By: jjeannea <jjeannea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 11:22:31 by jjeannea          #+#    #+#             */
-/*   Updated: 2026/07/15 14:07:52 by jjeannea         ###   ########.fr       */
+/*   Updated: 2026/07/15 14:25:20 by jjeannea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,26 @@ static void	fail(t_game *g, int mlx_up)
 		cleanup_mlx(g);
 	free_game(g);
 }
+
 static	int load_colors(t_game *g, char *path)
 {
 	t_data data;
 
 	ft_bzero(&data, sizeof(t_data));
-	if (ft_parsing(path, &data))
+	printf("truc bidon\n");
+	if (!ft_parsing(path, &data))
+	{
+		printf("in da loop\n");
 		return (1);
-	g->floor = rgb_to_int(data.color_f[0], data.color_f[1], data.color_f[2] );
+	}
+	g->floor = rgb_to_int(data.color_f[0], data.color_f[1], data.color_f[2]);
+	printf("floor = %d, %d, %d\n", data.color_f[0], data.color_f[1], data.color_f[2]);
 	g->ceiling = rgb_to_int(data.color_c[0], data.color_c[1], data.color_c[2]);
-	ft_free_data(&data);
+	printf("floor = %d, %d, %d\n", data.color_c[0], data.color_c[1], data.color_c[2]);
+
 	return (0);
 }
+
 
 int	main(int argc, char **argv)
 {
@@ -64,11 +72,8 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	ft_bzero(&g, sizeof(t_game));
-	if (load_colors(&g, argv[1]))
-	{
-		fail(&g, 0);
-		return (1);
-	}
+	load_colors(&g, argv[1]);
+	
 	if (init_mlx(&g))
 	{
 		fail(&g, 1);
