@@ -6,8 +6,8 @@ CFLAGS      = -Wall -Wextra -Werror
 MLX_DIR     = minilibx-linux
 MLX_LIB     = $(MLX_DIR)/libmlx.a
 MLX_ARCHIVE = minilibx-linux.tgz
-MLX_URL     = https://cdn.intra.42.fr/document/document/46321/minilibx-linux.tgz
-MLX_FLAGS   = $(MLX_LIB) -lX11 -lXext -lm -lz
+MLX_URL     = https://cdn.intra.42.fr/document/document/54644/minilibx-linux.tgz
+MLX_FLAGS   = $(MLX_DIR)/libmlx.a -lX11 -lXext -lm -lz
 
 LIBFT_DIR   = libft
 LIBFT_LIB   = $(LIBFT_DIR)/libft.a
