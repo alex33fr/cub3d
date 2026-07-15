@@ -65,7 +65,7 @@ fclean: clean
 	@rm -f $(NAME)
 	@rm -rf $(MLX_DIR)
 	@$(MAKE) -C $(LIBFT_DIR) fclean >/dev/null 2>&1
-	@printf "$(GREEN)[OK] Fclean termine (libft conservee)$(RESET)\n"
+	@printf "$(GREEN)[OK] Fclean termine$(RESET)\n"
 
 re:
 	@$(MAKE) fclean
