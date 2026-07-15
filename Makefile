@@ -34,7 +34,7 @@ $(MLX_LIB):
 		tar -xzf $(MLX_ARCHIVE); \
 	fi
 	@$(MAKE) -C $(MLX_DIR) >/dev/null 2>&1
-
+src/parsing/main.c
 $(LIBFT_LIB):
 	@$(MAKE) -C $(LIBFT_DIR)
 
