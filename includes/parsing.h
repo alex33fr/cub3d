@@ -6,14 +6,12 @@
 /*   By: aprivalo <aprivalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/06 09:00:00 by aprivalo          #+#    #+#             */
-/*   Updated: 2026/07/15 10:49:02 by aprivalo         ###   ########.fr       */
+/*   Updated: 2026/07/15 20:29:01 by aprivalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
-
-# include "libft.h"
 
 typedef struct s_map
 {
