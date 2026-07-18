@@ -39,6 +39,9 @@ SRCS =	src/main.c \
 		src/init/textures_load.c \
 		src/texture/texture_face.c \
 		src/texture/draw_texture.c \
+		src/player/move.c \
+		src/player/rotate.c \
+		src/events/input.c \
 		src/parsing/parsing.c \
 		src/parsing/tools.c \
 		src/parsing/map.c \
