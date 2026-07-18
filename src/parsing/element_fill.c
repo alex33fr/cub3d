@@ -6,7 +6,7 @@
 /*   By: aprivalo <aprivalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 15:20:00 by aprivalo          #+#    #+#             */
-/*   Updated: 2026/07/07 15:20:00 by aprivalo         ###   ########.fr       */
+/*   Updated: 2026/07/18 17:54:19 by aprivalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static char	**tex_slot(t_data *data, char c)
 int	fill_texture(t_data *data, char *line)
 {
 	char	**token;
-	char	**dst;
+	char	**dest;
 
 	token = ft_split(line, ' ');
 	if (!token)
@@ -46,15 +46,15 @@ int	fill_texture(t_data *data, char *line)
 		ft_free_tab(token);
 		return (1);
 	}
-	dst = tex_slot(data, token[0][0]);
-	if (*dst)
+	dest = tex_slot(data, token[0][0]);
+	if (*dest)
 	{
 		ft_free_tab(token);
 		return (1);
 	}
-	*dst = ft_strdup(token[1]);
+	*dest = ft_strdup(token[1]);
 	ft_free_tab(token);
-	if (!*dst)
+	if (!*dest)
 		return (1);
 	return (0);
 }

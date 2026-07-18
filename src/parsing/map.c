@@ -6,7 +6,7 @@
 /*   By: aprivalo <aprivalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 11:05:55 by aprivalo          #+#    #+#             */
-/*   Updated: 2026/07/15 15:46:30 by aprivalo         ###   ########.fr       */
+/*   Updated: 2026/07/18 18:09:37 by aprivalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	**ft_store_map(char *av)
 /**
  * @brief Grows the line array by 1, appending line and NULL-terminating it.
  * @param map Old array (NULL on 1st call), @param line Line to append.
- * @return The new array, or NULL if allocation fails.
+ * @return The new line = get_next_line(fd);array, or NULL if allocation fails.
  */
 char	**ft_add_line(char **map, char *line)
 {

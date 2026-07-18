@@ -6,7 +6,7 @@
 /*   By: aprivalo <aprivalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 11:22:31 by jjeannea          #+#    #+#             */
-/*   Updated: 2026/07/15 19:46:07 by aprivalo         ###   ########.fr       */
+/*   Updated: 2026/07/18 18:00:00 by aprivalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("Error 1\n", 2);
 		return (1);
 	}
+	ft_bzero(&data, sizeof(t_data));
+	ft_bzero(&g, sizeof(t_game));
 	status = ft_parsing(argv[1], &data);
 	if(status == 1)
 	{
 		ft_putstr_fd("Error 2\n", 2);
 		return (1);
 	}
-	ft_bzero(&g, sizeof(t_game));
-	ft_bzero(&data, sizeof(t_data));
 	if (init_mlx(&g))
 	{
 		fail(&g, 1);
