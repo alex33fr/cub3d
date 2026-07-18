@@ -33,6 +33,12 @@ SRCS =	src/main.c \
 		src/utils/img.c \
 		src/bridge/scene_map.c \
 		src/bridge/scene_fill.c \
+		src/render/ray_init.c \
+		src/render/ray_dda.c \
+		src/utils/map_guard.c \
+		src/init/textures_load.c \
+		src/texture/texture_face.c \
+		src/texture/draw_texture.c \
 		src/parsing/parsing.c \
 		src/parsing/tools.c \
 		src/parsing/map.c \
