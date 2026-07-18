@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "parsing.h"
 
 static int	has_cub_ext(char *s)
 {
@@ -27,10 +26,11 @@ static int	has_cub_ext(char *s)
 
 static int	check_args(int argc, char **argv)
 {
-	if (argc != 2)
+	if (argc != 2 || !has_cub_ext(argv[1]))
+	{
+		ft_putstr_fd("Error\n", 2);
 		return (0);
-	if (!has_cub_ext(argv[1]))
-		return (0);
+	}
 	return (1);
 }
 
@@ -42,32 +42,18 @@ static void	fail(t_game *g, int mlx_up)
 	free_game(g);
 }
 
-static	int load_colors(t_game *g, char *path)
-{
-	t_data data;
-
-	ft_bzero(&data, sizeof(t_data));
-	if (!ft_parsing(path, &data))
-		return (1);
-	g->floor = rgb_to_int(data.color_f[0], data.color_f[1], data.color_f[2]);
-	g->ceiling = rgb_to_int(data.color_c[0], data.color_c[1], data.color_c[2]);
-
-	return (0);
-}
-
-
 int	main(int argc, char **argv)
 {
 	t_game	g;
 
 	if (!check_args(argc, argv))
+		return (1);
+	ft_bzero(&g, sizeof(t_game));
+	if (parse_scene(&g, argv[1]))
 	{
-		ft_putstr_fd("Error\n", 2);
+		fail(&g, 0);
 		return (1);
 	}
-	ft_bzero(&g, sizeof(t_game));
-	load_colors(&g, argv[1]);
-	
 	if (init_mlx(&g))
 	{
 		fail(&g, 1);

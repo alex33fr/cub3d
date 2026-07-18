@@ -31,6 +31,8 @@ SRCS =	src/main.c \
 		src/render/render.c \
 		src/utils/color.c \
 		src/utils/img.c \
+		src/bridge/scene_map.c \
+		src/bridge/scene_fill.c \
 		src/parsing/parsing.c \
 		src/parsing/tools.c \
 		src/parsing/map.c \
