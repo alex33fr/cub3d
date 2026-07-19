@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphic.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjeannea <jjeannea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aprivalo <aprivalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 11:22:31 by jjeannea          #+#    #+#             */
-/*   Updated: 2026/07/15 15:56:02 by jjeannea         ###   ########.fr       */
+/*   Updated: 2026/07/19 12:48:16 by aprivalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@
 # define K_A 97
 # define K_S 115
 # define K_D 100
-# define K_LEFT 65361
-# define K_RIGHT 65363
+# define K_LEFT 65363
+# define K_RIGHT 65361
 
 # define EV_KEYPRESS 2
 # define EV_KEYRELEASE 3
