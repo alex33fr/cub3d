@@ -3,7 +3,6 @@ NAME        = cub3D
 CC          = cc
 CFLAGS      = -Wall -Wextra -Werror
 
-# --- cub3d-specific: philosophers has no external libs, cub3d needs MinilibX + libft ---
 MLX_DIR     = minilibx-linux
 MLX_LIB     = $(MLX_DIR)/libmlx.a
 MLX_ARCHIVE = minilibx-linux.tgz
@@ -12,7 +11,6 @@ MLX_FLAGS   = $(MLX_DIR)/libmlx.a -lX11 -lXext -lm -lz
 
 LIBFT_DIR   = libft
 LIBFT_LIB   = $(LIBFT_DIR)/libft.a
-# --- end cub3d-specific ---
 
 INCLUDES  = -Iincludes -I$(MLX_DIR) -I$(LIBFT_DIR)
 
