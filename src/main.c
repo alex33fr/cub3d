@@ -12,21 +12,9 @@
 
 #include "cub3d.h"
 
-static int	has_cub_ext(char *s)
+static int	check_args(int argc)
 {
-	size_t	len;
-	int		cmp;
-
-	len = ft_strlen(s);
-	if (len < 5)
-		return (0);
-	cmp = ft_strncmp(s + len - 4, ".cub", 4);
-	return (cmp == 0);
-}
-
-static int	check_args(int argc, char **argv)
-{
-	if (argc != 2 || !has_cub_ext(argv[1]))
+	if (argc != 2)
 	{
 		ft_putstr_fd("Error\n", 2);
 		return (0);
@@ -46,7 +34,7 @@ int	main(int argc, char **argv)
 {
 	t_game	g;
 
-	if (!check_args(argc, argv))
+	if (!check_args(argc))
 		return (1);
 	ft_bzero(&g, sizeof(t_game));
 	if (parse_scene(&g, argv[1]))

@@ -1,4 +1,4 @@
-*This project has been created as part of the 42 curriculum by jjeannea & privalo*.
+*This project has been created as part of the 42 curriculum by jjeannea, aprivalo*.
 
 # cub3D
 
@@ -44,3 +44,7 @@ Controls (QWERTY)
 
 ## Resources
 
+- https://ibon-ira-cub3d.mintlify.app/introduction
+- man
+
+**AI usage:** Was used throughout as a pair-programming aid.
