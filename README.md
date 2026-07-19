@@ -45,6 +45,8 @@ Controls (QWERTY)
 ## Resources
 
 - https://ibon-ira-cub3d.mintlify.app/introduction
-- man
-
-**AI usage:** Was used throughout as a pair-programming aid.
+- Lode Vandevenne Raycasting (untextured, textured, movement): https://lodev.org/cgtutor/raycasting.html
+- MiniLibX (42 docs / Harm Smits guide, gontjarow MiniLibX reference)
+- man 3 open/read/close, man 3 malloc, man 3 perror
+- Wolfenstein 3D / F. Permadi — raycasting background theory
+- AI was used throughout as a pair-programming aid.
