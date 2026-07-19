@@ -19,7 +19,6 @@ minilibx-linux.tgz
 # Tools
 .vscode/
 .idea/
-.claude/
 *.swp
 *~
 *.log
