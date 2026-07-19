@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjeannea <jjeannea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aprivalo <aprivalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 11:22:31 by jjeannea          #+#    #+#             */
-/*   Updated: 2026/07/15 15:56:02 by jjeannea         ###   ########.fr       */
+/*   Updated: 2026/07/19 07:56:48 by aprivalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static void	set_dir(t_player *p, char c)
 
 static void	set_plane(t_player *p)
 {
-	p->plane_x = -p->dir_y * PLANE_LEN;
-	p->plane_y = p->dir_x * PLANE_LEN;
+	p->plane_x = p->dir_y * PLANE_LEN;
+	p->plane_y = -p->dir_x * PLANE_LEN;
 }
 
 static void	set_player(t_game *g, t_data *d)
