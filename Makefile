@@ -93,6 +93,7 @@ fclean: clean
 	@rm -f $(NAME)
 	@rm -rf $(MLX_DIR)
 	@rm -f $(MLX_ARCHIVE)
+	@if [ -d "$(LIBFT_DIR)" ]; then $(MAKE) -C $(LIBFT_DIR) fclean >/dev/null 2>&1; fi
 	@printf "$(GREEN)Fclean [OK]$(RESET)\n"
 
 re: fclean all

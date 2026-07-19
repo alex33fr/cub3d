@@ -5,13 +5,13 @@ NO ./texture/wall_north.xpm
 
 SO ./texture/wall_south.xpm
 
-F   69, 222, 199
+F 4,84,109
 
 EA ./texture/wall_east.xpm
 
 
 
-C 235, 198, 52
+C 229,255,254
 
 111111111111111111111111
 100000000000000000000001
