@@ -33,6 +33,8 @@ Produces `./cub3D`, compiled with `-Wall -Wextra -Werror`.
 
 ```sh
 ./cub3D maps/map.cub
+./cub3D maps/g*.cub [Good Maps]
+./cub3D maps/b*.cub [Bad Maps]
 ```
 
 Controls (QWERTY)
@@ -49,4 +51,4 @@ Controls (QWERTY)
 - MiniLibX (42 docs / Harm Smits guide, gontjarow MiniLibX reference)
 - man 3 open/read/close, man 3 malloc, man 3 perror
 - Wolfenstein 3D / F. Permadi — raycasting background theory
-- AI was used throughout as a pair-programming aid.
+- AI was used throughout as a pair-programming aid floodfill.

@@ -6,17 +6,13 @@
 /*   By: aprivalo <aprivalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 11:22:31 by jjeannea          #+#    #+#             */
-/*   Updated: 2026/07/19 15:31:44 by aprivalo         ###   ########.fr       */
+/*   Updated: 2026/07/31 10:56:20 by aprivalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GRAPHIC_H
 # define GRAPHIC_H
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdio.h>
 # include <string.h>
 # include <math.h>
 # include "mlx.h"
