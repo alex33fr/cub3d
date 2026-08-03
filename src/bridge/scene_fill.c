@@ -28,8 +28,8 @@ static void	set_dir(t_player *p, char c)
 
 static void	set_plane(t_player *p)
 {
-	p->plane_x = p->dir_y * PLANE_LEN;
-	p->plane_y = -p->dir_x * PLANE_LEN;
+	p->plane_x = -p->dir_y * PLANE_LEN;
+	p->plane_y = p->dir_x * PLANE_LEN;
 }
 
 static void	set_player(t_game *g, t_data *d)

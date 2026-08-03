@@ -17,12 +17,12 @@ t_face	select_face(t_ray *r)
 	if (r->side == 1)
 	{
 		if (r->dir_y > 0)
-			return (FACE_NO);
-		return (FACE_SO);
+			return (FACE_SO);
+		return (FACE_NO);
 	}
 	if (r->dir_x > 0)
-		return (FACE_WE);
-	return (FACE_EA);
+		return (FACE_EA);
+	return (FACE_WE);
 }
 
 double	wall_x_value(t_game *g, t_ray *r)

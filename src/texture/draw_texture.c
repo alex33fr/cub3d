@@ -15,9 +15,9 @@
 static void	compute_tex_x(t_texdraw *d, t_ray *r, int tex_w)
 {
 	d->tex_x = (int)(d->wall_x * tex_w);
-	if (r->side == 0 && r->dir_x > 0)
+	if (r->side == 0 && r->dir_x < 0)
 		d->tex_x = tex_w - d->tex_x - 1;
-	if (r->side == 1 && r->dir_y < 0)
+	if (r->side == 1 && r->dir_y > 0)
 		d->tex_x = tex_w - d->tex_x - 1;
 }
 
