@@ -1,7 +1,7 @@
-NO ./texture/wall_north.xpm
-SO ./texture/wall_south.xpm
-WE ./texture/wall_west.xpm
-EA ./texture/wall_east.xpm
+NO ./texture/wall_north1.xpm
+SO ./texture/wall_south1.xpm
+WE ./texture/wall_west1.xpm
+EA ./texture/wall_east1.xpm
 
 F 4,84,109
 C 229,255,254
@@ -11,6 +11,6 @@ C 229,255,254
 1       0001
 1000000 0011
 10S000000001
-111111111111
+110111111111
 11         1
 111111111111

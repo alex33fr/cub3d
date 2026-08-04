@@ -6,16 +6,16 @@
 
 
 
-NO ./texture/wall_north.xpm
+NO ./texture/wall_north1.xpm
 
 
 
 
 
 
-SO ./texture/wall_south.xpm
-WE ./texture/wall_west.xpm
-EA ./texture/wall_east.xpm
+SO ./texture/wall_south1.xpm
+WE ./texture/wall_west1.xpm
+EA ./texture/wall_east1.xpm
 
 F 4,84,109
 C 229,255,254
