@@ -17,14 +17,16 @@ static int	check_args(int argc)
 	if (argc != 2)
 	{
 		ft_putstr_fd("Error\n", 2);
+		ft_putstr_fd("usage: ./cub3d <scene.cub>\n", 2);
 		return (0);
 	}
 	return (1);
 }
 
-static void	fail(t_game *g, int mlx_up)
+static void	fail(t_game *g, int mlx_up, char *msg)
 {
 	ft_putstr_fd("Error\n", 2);
+	ft_putstr_fd(msg, 2);
 	if (mlx_up)
 		cleanup_mlx(g);
 	free_game(g);
@@ -39,17 +41,17 @@ int	main(int argc, char **argv)
 	ft_bzero(&g, sizeof(t_game));
 	if (parse_scene(&g, argv[1]))
 	{
-		fail(&g, 0);
+		fail(&g, 0, "failed to parse scene\n");
 		return (1);
 	}
 	if (init_mlx(&g))
 	{
-		fail(&g, 1);
+		fail(&g, 1, "mlx initialization failed\n");
 		return (1);
 	}
 	if (load_textures(&g))
 	{
-		fail(&g, 1);
+		fail(&g, 1, "failed to load textures\n");
 		return (1);
 	}
 	setup_hooks(&g);
