@@ -6,7 +6,7 @@
 /*   By: aprivalo <aprivalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 11:27:21 by aprivalo          #+#    #+#             */
-/*   Updated: 2026/08/04 11:30:37 by aprivalo         ###   ########.fr       */
+/*   Updated: 2026/08/04 11:39:56 by aprivalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,12 @@ static char	**copy_map(t_data *data)
 	return (copy);
 }
 
+/**
+ * @brief 
+ * Search the goods chars outside of the map, if find return 1
+ * @param copy 
+ * @return int 
+ */
 static int	outside_map(char **copy)
 {
 	int	y;
@@ -73,17 +79,12 @@ static int	outside_map(char **copy)
 		{
 			if (ft_strchr("0NSEW ", copy[y][x]) && copy[y][x] != 'F')
 				return (1);
-			/*111111
-			  1N0011
-			  111111
-			*/
 			x++;
 		}
 		y++;
 	}
 	return (0);
 }
-
 
 /**
  * @brief Checks the map is closed by flood-filling a copy from the spawn.

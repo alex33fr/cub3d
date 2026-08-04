@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjeannea <jjeannea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aprivalo <aprivalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 14:37:09 by jjeannea          #+#    #+#             */
-/*   Updated: 2026/08/04 11:05:22 by jjeannea         ###   ########.fr       */
+/*   Updated: 2026/08/04 11:41:32 by aprivalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	rgb_to_int(int r, int g, int b)
 {
-	int res = (r << 16) | (g << 8) | b;
+	int	res;
+
+	res = ((r << 16) | (g << 8) | b);
 	return (res);
 }
