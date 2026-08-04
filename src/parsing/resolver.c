@@ -6,7 +6,7 @@
 /*   By: aprivalo <aprivalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 11:27:21 by aprivalo          #+#    #+#             */
-/*   Updated: 2026/07/07 11:27:55 by aprivalo         ###   ########.fr       */
+/*   Updated: 2026/08/04 11:30:37 by aprivalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,31 @@ static char	**copy_map(t_data *data)
 	return (copy);
 }
 
+static int	outside_map(char **copy)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (copy[y])
+	{
+		x = 0;
+		while (copy[y][x])
+		{
+			if (ft_strchr("0NSEW ", copy[y][x]) && copy[y][x] != 'F')
+				return (1);
+			/*111111
+			  1N0011
+			  111111
+			*/
+			x++;
+		}
+		y++;
+	}
+	return (0);
+}
+
+
 /**
  * @brief Checks the map is closed by flood-filling a copy from the spawn.
  * @param data Structure holding the map and the spawn position.
@@ -78,6 +103,7 @@ int	ft_check_closed(t_data *data)
 	y = data->map.spawn_y - data->map.start;
 	x = data->map.spawn_x;
 	leak = ft_flood_fill(copy, y, x);
+	leak = outside_map(copy);
 	ft_free_tab(copy);
 	return (leak);
 }
