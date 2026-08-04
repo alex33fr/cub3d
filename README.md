@@ -32,7 +32,6 @@ Produces `./cub3D`, compiled with `-Wall -Wextra -Werror`.
 > and is ignored by git.
 
 ```sh
-./cub3D maps/map.cub
 ./cub3D maps/g*.cub [Good Maps]
 ./cub3D maps/b*.cub [Bad Maps]
 ```
