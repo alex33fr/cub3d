@@ -61,10 +61,24 @@ static char	**copy_map(t_data *data)
 }
 
 /**
- * @brief 
- * Search the goods chars outside of the map, if find return 1
- * @param copy 
- * @return int 
+ * @brief Tells whether (y, x) is off the grid: an actual open boundary.
+ * A space stops the player exactly like a wall (see is_wall in
+ * map_guard.c), so it is not a leak on its own, only running off the
+ * grid (or off the end of a shorter row) is.
+ * @param copy Map copy, @param y Row, @param x Column.
+ * @return 1 if the cell is off the grid, 0 otherwise.
+ */
+static int	is_open(char **copy, int y, int x)
+{
+	if (y < 0 || !copy[y] || x < 0 || (size_t)x >= ft_strlen(copy[y]))
+		return (1);
+	return (0);
+}
+
+/**
+ * @brief Checks every floor cell (visited or not) is walled on all 4 sides.
+ * @param copy Map copy (visited cells were marked 'F' by the flood fill).
+ * @return 1 if a floor cell touches an open boundary, 0 if fully enclosed.
  */
 static int	outside_map(char **copy)
 {
@@ -77,7 +91,9 @@ static int	outside_map(char **copy)
 		x = 0;
 		while (copy[y][x])
 		{
-			if (ft_strchr("0NSEW ", copy[y][x]) && copy[y][x] != 'F')
+			if (ft_strchr("0NSEWF", copy[y][x]) && (is_open(copy, y - 1, x)
+					|| is_open(copy, y + 1, x) || is_open(copy, y, x - 1)
+					|| is_open(copy, y, x + 1)))
 				return (1);
 			x++;
 		}
@@ -104,7 +120,8 @@ int	ft_check_closed(t_data *data)
 	y = data->map.spawn_y - data->map.start;
 	x = data->map.spawn_x;
 	leak = ft_flood_fill(copy, y, x);
-	leak = outside_map(copy);
+	if (outside_map(copy))
+		leak = 1;
 	ft_free_tab(copy);
 	return (leak);
 }
